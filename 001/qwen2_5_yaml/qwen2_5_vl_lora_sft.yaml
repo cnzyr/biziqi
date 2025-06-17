@@ -1,0 +1,47 @@
+### model
+model_name_or_path: /data/liuzz-f/models/Qwen2.5-VL-7B-Instruct
+image_max_pixels: 262144
+video_max_pixels: 16384
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 8
+lora_target: all
+
+### dataset
+dataset: A1-Spatial-Transformation-train,A2-Structure-Perception-train,A3-Visual-Counting-train,AI2D-train,ClevrMath-train,Geometry3K-train,GeomVerse-train,GeoQA-train,GVLQA-connectivity-train,GVLQA-cycle-train,GVLQA-hamilton-train,GVLQA-matching-train,GVLQA-topology-train,IconQA-train,PuzzleVQA-train,ScienceQA-train,Raven-train,Trance-train  # video: mllm_video_demo
+template: qwen2_vl
+cutoff_len: 2048
+max_samples: 10000
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### output
+output_dir: saves/qwen2.5-vl-7b/lora/sft_003
+logging_steps: 10
+save_steps: 5000
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: true
+report_to: none
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 4
+learning_rate: 1.0e-5
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+val_size: 0.01
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 1000

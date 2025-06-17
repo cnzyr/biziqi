@@ -1,0 +1,11 @@
+### model
+model_name_or_path: /data/liuzz-f/models/Qwen2.5-VL-7B-Instruct
+adapter_name_or_path: saves/qwen2.5-vl-7b/lora/sft_003  # 更新适配器路径
+template: qwen2_vl
+trust_remote_code: true
+
+### export
+export_dir: output/qwen2_5_vl_lora_sft_003  # 更新导出目录
+export_size: 5
+export_device: cpu
+export_legacy_format: false
